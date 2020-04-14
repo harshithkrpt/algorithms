@@ -1,3 +1,4 @@
+// Hash Function
 function hashStringToInt(s, tableSize) {
   let hash = 17;
 
@@ -55,12 +56,4 @@ class HashTable {
   };
 }
 
-const myTable = new HashTable();
-myTable.setItem("firstName", "bob");
-console.log(myTable.table.length);
-myTable.setItem("Namefirst", "harshith");
-console.log(myTable.table.length);
-myTable.setItem("jsjs", "harshith");
-console.log(myTable.table.length);
-console.log(myTable.getItem("firstName"));
-console.log(myTable.getItem("Namefirst"));
+module.exports = HashTable;

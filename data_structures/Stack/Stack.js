@@ -11,7 +11,7 @@ class Stack {
   pop = () => {
     if (this.items > 0) {
       this.items--;
-      this.array.pop();
+      return this.array.pop();
     }
   };
 
@@ -24,10 +24,4 @@ class Stack {
   };
 }
 
-const stack = new Stack();
-stack.push(10);
-console.log(stack.top());
-console.log(stack.array);
-stack.pop();
-stack.pop();
-console.log(stack.array);
+module.exports = Stack;
