@@ -59,14 +59,11 @@ class LinkedList {
         // If Element is First Element
         if (this.list === tempList) {
           this.list = this.list.next;
+        } else {
+          // If Element is Middle Element
+          predList.next = tempList.next;
+          return true;
         }
-        // If Element is Last Element
-        if (tempList.next === null) {
-          predList.next = null;
-        }
-        // If Element is Middle Element
-        predList.next = tempList.next;
-        return true;
       }
       predList = tempList;
       tempList = tempList.next;
