@@ -9,7 +9,7 @@ const quickSort = (arr) => {
   const pivotIndex = getRandomPivotIndex(arr.length);
   const pivot = arr[pivotIndex];
   const less = arr.filter(
-    (item, index) => item < pivot && index !== pivotIndex
+    (item, index) => item <= pivot && index !== pivotIndex
   );
   const greater = arr.filter(
     (item, index) => item > pivot && index !== pivotIndex
@@ -18,4 +18,4 @@ const quickSort = (arr) => {
   return [...quickSort(less), pivot, ...quickSort(greater)];
 };
 
-console.log(quickSort([2, 3, 1]));
+console.log(quickSort([2, 2, 2, 2, 2, 1, 1, 1, 3]));
