@@ -14,5 +14,3 @@
 
 - Modeling your application in terms of well-defined struc-
   tures and algorithms is the most important single step towards a solution.
-
-<!-- TODO Solve Chapter One Exercise -->

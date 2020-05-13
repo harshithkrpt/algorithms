@@ -5,5 +5,3 @@
 
 - The Big Oh notation and worst-case analysis are tools
   that greatly simplify our ability to compare the efficiency of algorithms
-
-<!-- TODO EXERCISE -->

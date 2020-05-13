@@ -39,5 +39,3 @@
 - Constant Amount with good hash function with maintained load factor
 - structures open addressing and chaining
 - open addressing with sequential probing -> inserting to next empty slot
-
-<!-- TODO SOLVE EXERSISE -->
