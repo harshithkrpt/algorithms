@@ -23,3 +23,27 @@
 
 - Adjacency lists are the right data structure for most
   applications of graphs.
+
+- Breadth-first and depth-first searches provide mechanisms
+  to visit each edge and vertex of the graph. They prove the basis of most simple,
+  efficient graph algorithms.
+
+- DFS organizes vertices by entry/exit times, and edges
+  into tree and back edges. This organization is what gives DFS its real power.
+
+## Application of DFS
+
+- finding cycles
+
+- articulation vertices
+
+## Notes
+
+- what is articulation vertex ?
+
+a single vertex whose deletion disconnects a connectivity of graph
+
+- finding articulation point is easy with dfs with 2 rules
+
+  1. root is articulated if it hash atleast 2 children
+  2. non root vertex child has to have a back edge to ancestor of non root vertex

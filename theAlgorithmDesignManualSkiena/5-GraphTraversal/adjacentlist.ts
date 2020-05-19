@@ -97,14 +97,43 @@ class Graph {
       }
     }
   }
+
+  dfs(start: number, end: number) {
+    if (start === end) {
+      return { path: `${start}-${end}` };
+    }
+    const stack: number[] = [];
+    const visited: boolean[] = [];
+    const parent: number[] = [];
+    stack.push(start);
+    parent[start] = null;
+    while (stack.length) {
+      let u = stack.pop();
+      visited[u] = true;
+      let ptr: EdgeNode = this.edges[u];
+      while (ptr) {
+        const y = ptr.y;
+        if (!visited[y]) {
+          stack.push(y);
+          visited[y] = true;
+          parent[y] = u;
+          if (y === end) {
+            return this.findPath(parent, end);
+          }
+        }
+        ptr = ptr.next;
+      }
+    }
+  }
 }
 
 const graph = new Graph(true);
 graph.readGraph(4, [
   { x: 1, y: 2 },
-  { x: 2, y: 3 },
+  { x: 1, y: 3 },
   { x: 3, y: 4 },
-  { x: 1, y: 4 },
+  { x: 4, y: 1 },
 ]);
-// graph.printGraph();
-console.log(graph.bfs(1, 4));
+graph.printGraph();
+// console.log(graph.bfs(1, 4));
+// console.log(graph.dfs(1, 4));
