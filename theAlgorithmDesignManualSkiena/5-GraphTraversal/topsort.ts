@@ -6,7 +6,7 @@ import {
   entryTime,
   Graph,
 } from "./data_schema";
-import { dfs } from "./init";
+import { dfs } from "./dfs";
 
 const queue = [];
 

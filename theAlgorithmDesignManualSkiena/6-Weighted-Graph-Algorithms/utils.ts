@@ -1,22 +1,5 @@
-import {
-  Edgenode,
-  Graph,
-  MAXV,
-  Point,
-  processed,
-  discovered,
-  parent,
-  graph,
-} from "./data_schema";
-import { insertEdge } from "./insert";
-
-export const initializeSearch = () => {
-  for (let i = 1; i <= graph.nvertices; i++) {
-    processed[i] = discovered[i] = false;
-    parent[i] = -1;
-  }
-};
-
+import { Graph, EdgeNode, Point } from "./data_schema";
+const MAXV = 1000;
 export const initializeGraph = (graph: Graph, directed: boolean) => {
   graph.nvertices = 0;
   graph.nedges = 0;
@@ -26,6 +9,23 @@ export const initializeGraph = (graph: Graph, directed: boolean) => {
   for (let i = 1; i <= MAXV; i++) graph.edges[i] = null;
 };
 
+export const insertEdge = (
+  graph: Graph,
+  x: number,
+  y: number,
+  weight: number,
+  directed: boolean
+) => {
+  let ptr: EdgeNode = { weight, y, next: graph.edges[x] };
+  graph.edges[x] = ptr;
+  if (graph.degree[x]) {
+    graph.degree[x]++;
+  } else graph.degree[x] = 1;
+
+  if (directed == false) insertEdge(graph, y, x, weight, true);
+  else graph.nedges++;
+};
+
 export const readGraph = (
   graph: Graph,
   nvertices: number,
@@ -33,23 +33,23 @@ export const readGraph = (
   directed: boolean
 ) => {
   graph.nvertices = nvertices;
+  graph.directed = directed;
   for (let point of edges) {
-    insertEdge(graph, point.x, point.y, directed);
+    insertEdge(graph, point.x, point.y, point.weight, directed);
   }
 };
 
 export const printGraph = (graph: Graph) => {
-  let ptr: Edgenode;
+  let ptr: EdgeNode;
 
   for (let i = 1; i <= graph.nvertices; i++) {
-    console.log("%d", i);
-    console.log("-----------");
+    console.log("Node %d", i);
     ptr = graph.edges[i];
     while (ptr != null) {
-      console.log("%d", ptr.y);
+      console.log("%d -- %d", i, ptr.y);
       ptr = ptr.next;
     }
-    console.log("---------");
+    console.log("--------");
   }
 };
 
