@@ -2,7 +2,6 @@
 const subset = [];
 const search = (k: number, n: number) => {
   if (k === n) {
-    // console.log(subset);
     return;
   } else {
     search(k + 1, n);

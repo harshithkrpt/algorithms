@@ -14,7 +14,6 @@ const isUniqueLookUp = (string) => {
 console.log(isUniqueLookUp("qwertyuioep"));
 
 // one variable and O(n)
-// TODO LEARN BIT MANIPULATIONS
 
 // or O(n^2)
 // or O(n log n) -> sorting
