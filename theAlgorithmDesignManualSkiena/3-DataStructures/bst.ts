@@ -54,6 +54,14 @@ class BinarySearchTree {
     return node;
   }
 
+  findMaximum(node = this.root) {
+    if (node === null) return null;
+    while (node.right) {
+      node = node.right;
+    }
+    return node;
+  }
+
   traverseInOrder(node = this.root) {
     if (node !== null) {
       this.traverseInOrder(node.left);
@@ -78,20 +86,68 @@ class BinarySearchTree {
     }
   }
 
-  // TODO Deletion
+  traverseLevelOrder(node = this.root) {
+    let stack: TreeNode[] = [];
+    stack.push(this.root);
+    while (stack.length) {
+      const item = stack.shift();
+      console.log(item.value);
+      if (item.left) stack.push(item.left);
+      if (item.right) stack.push(item.right);
+    }
+  }
+
+  deleteNode(key: number) {
+    this.root = this.deleteNodeRec(this.root, key);
+  }
+
+  deleteNodeRec(root: TreeNode, key: number) {
+    if (!root) return root;
+
+    if (key < root.value) root.left = this.deleteNodeRec(root.left, key);
+    else if (key > root.value) root.right = this.deleteNodeRec(root.right, key);
+    else {
+      if (!root.left) {
+        const temp: TreeNode = root.right;
+        return temp;
+      } else if (!root.right) {
+        const temp: TreeNode = root.left;
+        return temp;
+      }
+
+      const temp: TreeNode = this.findMinimum(root.right);
+      root.value = temp.value;
+
+      root.right = this.deleteNodeRec(root.right, temp.value);
+    }
+
+    return root;
+  }
 }
 
 const bst = new BinarySearchTree(5);
-bst.insertItem(4);
-bst.insertItem(6);
-bst.insertItem(10);
-bst.insertItem(12);
-bst.insertItem(2);
-bst.insertItem(1);
-bst.insertItem(32);
-bst.insertItem(26);
+bst.insertItem(50);
+bst.insertItem(30);
+bst.insertItem(20);
+bst.insertItem(40);
+bst.insertItem(70);
+bst.insertItem(60);
+bst.insertItem(80);
+
 // console.log(bst.searchTree(4));
 // console.log(bst.findMinimum());
+console.log("YY");
 bst.traverseInOrder();
+// bst.traverseLevelOrder();
 // bst.traversePreOrder();
 // bst.traversePostOrder();
+console.log("YY2");
+bst.deleteNode(20);
+bst.traverseInOrder();
+console.log("YY3");
+bst.deleteNode(30);
+bst.traverseInOrder();
+
+console.log("YY4");
+bst.deleteNode(50);
+bst.traverseInOrder();
