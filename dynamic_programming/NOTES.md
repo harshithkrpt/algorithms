@@ -65,3 +65,11 @@ int main()
 
 	1 -> Optimal Substructure
 					
+
+## TODO PROBLEMS
+
+- line of wines
+- coin chage all versions
+- stair case and stair case with k steps
+- minimum path sum
+
